@@ -1,0 +1,43 @@
+{
+  "name": "basic_rest_api_example",
+  "version": "0.1.0",
+  "description": "A reference for other rest api based projects.",
+  "main": "app.js",
+  "scripts": {
+    "build": "babel api --out-dir build",
+    "rebuild": "rimraf build && npm run build && npm start",
+    "dev": "nodemon --exec npm run rebuild",
+    "start": "node build/app.js"
+  },
+  "keywords": [],
+  "author": "inthahouse",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.5",
+    "morgan": "^1.9.1",
+    "validator": "^12.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0"
+  },
+  "engines": {
+    "node": ">= 13.0.0"
+  }
+}
