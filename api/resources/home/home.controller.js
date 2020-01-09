@@ -19,7 +19,10 @@ export const getPublicPosts = async (req, res) => {
       .exec()
 
     res.status(goodStatus).json({
-      message: 'Welcome to a basic rest api example',
+      greeting:
+        'Welcome to a basic rest api example (inthahouse edition hehe 😎)',
+      help:
+        'See read me for routes info in https://github.com/inThaHouse/basic-rest-api-example',
       posts,
     })
   } catch (err) {
