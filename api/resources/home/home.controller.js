@@ -4,7 +4,7 @@ import { goodStatus, badStatus } from '../utils/constants'
 const options = {
   createdBy: {
     path: 'createdBy',
-    select: 'username email',
+    select: 'username',
   },
   public: {
     public: true,
@@ -22,7 +22,7 @@ export const getPublicPosts = async (req, res) => {
       greeting:
         'Welcome to a basic rest api example (inthahouse edition hehe 😎)',
       help:
-        'See read me for routes info in https://github.com/inThaHouse/basic-rest-api-example',
+        'See read me for some routes info in https://github.com/inThaHouse/basic-rest-api-example (api docs are still incomplete. Sorry im working on it.)',
       posts,
     })
   } catch (err) {
