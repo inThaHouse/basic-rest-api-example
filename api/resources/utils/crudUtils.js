@@ -16,10 +16,11 @@ const readOne = model => async (req, res) => {
   }
 }
 
-const readMany = model => async (req, res) => {
+export const readMany = (model, options) => async (req, res) => {
   try {
     const documents = await model
-      .find({ createdBy: req.profile._id })
+      .find({ createdBy: req.profile._id, ...options.public })
+      .populate(options.createdBy)
       .lean()
       .exec()
 
@@ -79,12 +80,12 @@ const deleteOne = model => async (req, res) => {
   }
 }
 
-const crudUtils = model => {
+const crudUtils = (model, options = {}) => {
   return {
     deleteOne: deleteOne(model),
     updateOne: updateOne(model),
     readOne: readOne(model),
-    readMany: readMany(model),
+    readMany: readMany(model, options),
     createOne: createOne(model),
   }
 }

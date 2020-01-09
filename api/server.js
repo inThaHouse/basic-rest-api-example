@@ -4,7 +4,6 @@ import cors from 'cors'
 import morgan from 'morgan'
 
 import startDatabase from './resources/database/db'
-import { goodStatus } from './resources/utils/constants'
 import {
   register,
   login,
@@ -12,7 +11,7 @@ import {
 } from './resources/utils/authentication'
 import profileRouter from './resources/profile/profile.router'
 import postRouter from './resources/post/post.router'
-import listRouter from './resources/list/list.router'
+import { getPublicPosts } from './resources/home/home.controller'
 
 const app = express()
 const PORT = process.env.PORT
@@ -24,19 +23,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
 // routes
-app.get('/', (_, res) => {
-  res
-    .status(goodStatus)
-    .json({ message: 'Hello and welcome to my basic api!!!' })
-})
-
+app.get('/', getPublicPosts)
 app.post('/register', register)
 app.post('/login', login)
 
 app.use('/api', protectedRouter)
 app.use('/api/profile', profileRouter)
 app.use('/api/post', postRouter)
-app.use('/api/list', listRouter)
 
 const startApplication = async () => {
   try {

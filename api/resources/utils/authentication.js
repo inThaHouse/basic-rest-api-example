@@ -23,7 +23,7 @@ const register = async (req, res) => {
   if (!email || !password)
     return res
       .status(badStatus)
-      .send({ message: 'Please provide an email and/or password.' })
+      .send({ message: 'Please provide a valid email and/or password.' })
 
   try {
     const profile = await Profile.create(req.body)
@@ -32,7 +32,7 @@ const register = async (req, res) => {
     res.status(goodStatus).send({ newlyGeneratedToken })
   } catch (err) {
     console.error(err)
-    res.status(500).end()
+    res.status(500).json(err)
   }
 }
 

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import bcryptjs from 'bcryptjs'
+import validator from 'validator'
 
 const profileSchema = new mongoose.Schema(
   {
@@ -8,10 +9,22 @@ const profileSchema = new mongoose.Schema(
       required: true,
       unique: true,
       trim: true,
+      validate: {
+        validator(email) {
+          return validator.isEmail(email)
+        },
+        message: () => `Please provide a valid email.`,
+      },
     },
     password: {
       type: String,
       required: true,
+      validate: {
+        validator(password) {
+          return password.length > 6
+        },
+        message: () => `Please provide a password with more than 6 characters.`,
+      },
     },
     username: {
       type: String,

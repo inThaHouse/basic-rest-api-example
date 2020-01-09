@@ -7,6 +7,11 @@ const postSchema = new mongoose.Schema(
       required: true,
       trim: true,
       maxlength: 50,
+      unique: true,
+    },
+    public: {
+      type: Boolean,
+      default: true,
     },
     description: String,
     createdBy: {
@@ -14,17 +19,12 @@ const postSchema = new mongoose.Schema(
       ref: 'profile',
       required: true,
     },
-    list: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: 'list',
-      required: true,
-    },
   },
   { timestamps: true }
 )
 
-postSchema.index({ list: 1, title: 1 }, { unique: true })
+postSchema.index({ profile: 1, title: 1 }, { unique: true })
 
-const Post = mongoose.model('post', postSchema)
+const Post = mongoose.model('list', postSchema)
 
 export default Post
